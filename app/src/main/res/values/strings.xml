@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">scaffold</string>
+    <string name="needInternet">Internet is required for the application to work.</string>
+    <string name="please_internet">Please turn on the internet</string>
+    <string name="startagain">Start Again</string>
+    <string name="excellent">Excellent</string>
+    <string name="result">Your result</string>
+    <string name="background">Background</string>
+    <string name="footbal">Footbal Image</string>
+    <string name="result_Button">Your Score</string>
+    <string name="beat_the_bot">Beat the bot in rock, paper, scissors</string>
+</resources>

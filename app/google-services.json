@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "265325505819",
+    "project_id": "scaffold-ed75c",
+    "storage_bucket": "scaffold-ed75c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:265325505819:android:c4d13c4b4401814d97f7be",
+        "android_client_info": {
+          "package_name": "com.example.scaffold"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "265325505819-cmn46ac3jcd8apjhfa5ngunmeoh417c2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmfruopoqLkkGvD43RKQtRo45fdg2Bx1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "265325505819-cmn46ac3jcd8apjhfa5ngunmeoh417c2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
