@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">scaffold</string>
+    <string name="app_name">stadium</string>
     <string name="needInternet">Internet is required for the application to work.</string>
     <string name="please_internet">Please turn on the internet</string>
     <string name="startagain">Start Again</string>

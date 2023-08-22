@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "265325505819",
-    "project_id": "scaffold-ed75c",
-    "storage_bucket": "scaffold-ed75c.appspot.com"
+    "project_number": "647728749471",
+    "project_id": "stadium-baba8",
+    "storage_bucket": "stadium-baba8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:265325505819:android:c4d13c4b4401814d97f7be",
+        "mobilesdk_app_id": "1:647728749471:android:2de7d4e6f6f36efa61bbaa",
         "android_client_info": {
-          "package_name": "com.example.scaffold"
+          "package_name": "com.example.stadium"
         }
       },
       "oauth_client": [
         {
-          "client_id": "265325505819-cmn46ac3jcd8apjhfa5ngunmeoh417c2.apps.googleusercontent.com",
+          "client_id": "647728749471-r2jv3kkhk57apjk70kervl1hr7pik7j3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBmfruopoqLkkGvD43RKQtRo45fdg2Bx1c"
+          "current_key": "AIzaSyCeQRyXXalFL9ZfU0a9-0ccpe9xyhpW448"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "265325505819-cmn46ac3jcd8apjhfa5ngunmeoh417c2.apps.googleusercontent.com",
+              "client_id": "647728749471-r2jv3kkhk57apjk70kervl1hr7pik7j3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

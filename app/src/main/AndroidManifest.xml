@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.stadium.MainActivity"
             android:configChanges="orientation|screenSize"
             android:usesCleartextTraffic="true"
             android:exported="true">
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResultActivity"
+            android:name="com.example.stadium.ResultActivity"
             android:exported="true"/>
     </application>
 
