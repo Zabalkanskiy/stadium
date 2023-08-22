@@ -1,4 +1,4 @@
-package com.example.scaffold
+package com.example.stadium
 
 import org.junit.Test
 

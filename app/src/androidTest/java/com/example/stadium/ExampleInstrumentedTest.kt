@@ -1,4 +1,4 @@
-package com.example.scaffold
+package com.example.stadium
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
