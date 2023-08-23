@@ -12,6 +12,7 @@
 
 
     <application
+        android:name="com.example.stadium.StadiumApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -34,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.stadium.ResultActivity"
+            android:name="com.example.stadium.StadiumInfoActuvity"
             android:exported="true"/>
     </application>
 
