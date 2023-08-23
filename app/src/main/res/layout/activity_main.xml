@@ -10,6 +10,9 @@
         android:layout_height="match_parent"
         android:contentDescription="@string/background"
         />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/linear_activity"
         android:layout_width="match_parent"
@@ -18,86 +21,45 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/question_text_view"
+            android:id="@+id/title_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/beat_the_bot"
+            android:text="@string/beast_stadium_title"
             android:textSize="20sp"
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:padding="24dp" />
 
-        <ImageView
-            android:id="@+id/footbalImage"
+        <TextView
+            android:id="@+id/information_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/footbal"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"
-            />
+            android:text="@string/beast_stadium_information"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="24dp"
+            android:visibility="gone"/>
+
+
+
 
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="bottom|center"
             android:orientation="vertical">
 
-            >
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_view_boot"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="20dp"
-                android:elevation="12dp">
-             <ImageView
-                  android:id="@+id/boot_image"
-                  android:layout_width="60dp"
-                  android:layout_height="60dp"
-                  android:layout_marginBottom="20dp"
-                  android:background="@color/white"
-                 />
-            </androidx.cardview.widget.CardView>>
-
-            <ImageButton
-                android:id="@+id/first_image_button"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@color/white"
-                android:layout_marginBottom="4.dp"
-                android:src="@drawable/paper"/>
-
-            <ImageButton
-                android:id="@+id/second_image_button"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@color/white"
-                android:layout_marginBottom="4.dp"
-                android:src="@drawable/rock_stone" />
-
-            <ImageButton
-                android:id="@+id/third_image_button"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:background="@color/white"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/scissors" />
-
-            <Button
-                android:id="@+id/result_button"
-                style="?attr/materialButtonOutlinedStyle"
-
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:text="@string/result_Button"
-                android:textColor="@color/black" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/beast_stadium_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
         </LinearLayout>
 
     </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>
