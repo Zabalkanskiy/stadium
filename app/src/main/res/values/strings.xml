@@ -8,5 +8,8 @@
     <string name="background">Background</string>
     <string name="footbal">Footbal Image</string>
     <string name="result_Button">Your Score</string>
-    <string name="beat_the_bot">Beat the bot in rock, paper, scissors</string>
+    <string name="beast_stadium_title">The 10 best stadiums in the world</string>
+    <string name="stadium_image">stadium_image</string>
+    <string name="beast_stadium_information">information</string>
+    <string name="back">Back</string>
 </resources>
